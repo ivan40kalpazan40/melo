@@ -13,3 +13,7 @@ export const register = (username, password, confirmPassword) => {
     body: JSON.stringify({ username, password, confirmPassword }),
   }).then((res) => res.json());
 };
+
+export const logoutUser = () => {
+  return fetch('/user/logout').then((res) => res.json());
+};

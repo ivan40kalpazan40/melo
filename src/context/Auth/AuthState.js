@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useContext } from 'react';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import { AuthContext } from './AuthContext';
 const initialValue = null;
@@ -7,8 +7,11 @@ export const AuthProvider = (props) => {
   const login = (userData) => {
     setUser(userData);
   };
+  const logout = () => {
+    setUser(initialValue);
+  };
   return (
-    <AuthContext.Provider value={{ user, login }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {props.children}
     </AuthContext.Provider>
   );

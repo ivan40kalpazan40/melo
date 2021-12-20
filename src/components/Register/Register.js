@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 
 const Register = () => {
   const { user, login } = useAuth();
+  const navigate = useNavigate();
   const submitRegister = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -13,8 +15,7 @@ const Register = () => {
       .register(username, password, confirmPassword)
       .then((response) => {
         login(response);
-        localStorage.setItem('user', JSON.stringify(response));
-        console.log('sexy response ', response);
+        navigate('/');
       })
       .catch((err) => console.log(err.message));
   };

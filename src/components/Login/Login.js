@@ -1,7 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 const Login = () => {
   const { user, login } = useAuth();
+  const navigate = useNavigate();
   const submitLogin = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -11,8 +13,7 @@ const Login = () => {
       .login(username, password)
       .then((res) => {
         login(res);
-        console.log(`after login`, res);
-        localStorage.setItem('user', JSON.stringify(res));
+        navigate('/');
       })
       .catch((err) => console.log(err.message));
   };
