@@ -1,6 +1,9 @@
 import { useAuth } from '../../context/Auth/AuthState';
+import { useNavigate } from 'react-router-dom';
 const Home = () => {
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const randomArtistsListHandler = () => navigate('/artists');
   return (
     <div className='ui container'>
       <h1>Welcome to :melo:::</h1>
@@ -8,73 +11,78 @@ const Home = () => {
 
       {/*  */}
       {user ? (
-        <div class='ui placeholder segment'>
-          <div class='ui three column stackable center aligned grid'>
-            <div class='middle aligned row'>
-              <div class='column'>
-                <div class='ui icon header'>
-                  <i class='music icon'></i>
+        <div className='ui placeholder segment'>
+          <div className='ui three column stackable center aligned grid'>
+            <div className='middle aligned row'>
+              <div className='column'>
+                <div className='ui icon header'>
+                  <i className='music icon'></i>
                   See Random Artists
                 </div>
-                <div class='ui black button'>Go To List</div>
+                <div
+                  className='ui black button'
+                  onClick={randomArtistsListHandler}
+                >
+                  Go To List
+                </div>
               </div>
-              <div class='column'>
-                <div class='ui icon header'>
-                  <i class='search icon'></i>
+              <div className='column'>
+                <div className='ui icon header'>
+                  <i className='search icon'></i>
                   Search Artist, Genre or Release
                 </div>
-                <div class='field'>
-                  <div class='ui search'>
-                    <div class='ui icon input'>
+                <div className='field'>
+                  <div className='ui search'>
+                    <div className='ui icon input'>
                       <input
-                        class='prompt'
+                        className='prompt'
                         type='text'
                         placeholder='artist, genres, etc. ...'
                       />
-                      <i class='search icon'></i>
+                      <i className='search icon'></i>
                     </div>
-                    <div class='results'></div>
+                    <div className='results'></div>
                   </div>
                 </div>
               </div>
 
-              <div class='column'>
-                <div class='ui icon header'>
-                  <i class='user plus icon'></i>
+              <div className='column'>
+                <div className='ui icon header'>
+                  <i className='user plus icon'></i>
                   Add Friend
                 </div>
-                <div class='ui black button'>Find Friends</div>
+                <div className='ui black button'>Find Friends</div>
               </div>
             </div>
           </div>
         </div>
       ) : (
-        <div class='ui placeholder segment'>
-          <div class='ui two column stackable center aligned grid'>
-            <div class='middle aligned row'>
-              <div class='column'>
-                <div class='ui icon header'>
-                  <i class='music icon'></i>
+        <div className='ui placeholder segment'>
+          <div className='ui two column stackable center aligned grid'>
+            <div className='middle aligned row'>
+              <div className='column'>
+                <div className='ui icon header'>
+                  <i className='music icon'></i>
                   See Random Artists
                 </div>
-                <div class='ui primary button'>Go To List</div>
+                <div className='ui primary button'>Go To List</div>
               </div>
-              <div class='column'>
-                <div class='ui icon header'>
-                  <i class='search icon'></i>
+              <div className='column'>
+                <div className='ui icon header'>
+                  <i className='search icon'></i>
                   Search Artist, Genre or Release
                 </div>
-                <div class='field'>
-                  <div class='ui search'>
-                    <div class='ui icon input'>
+                <div className='field'>
+                  <div className='ui search'>
+                    <div className='ui icon input'>
                       <input
-                        class='prompt'
+                        className='prompt'
                         type='text'
                         placeholder='artist, genres, etc. ...'
                       />
-                      <i class='search icon'></i>
+                      <i className='search icon'></i>
                     </div>
-                    <div class='results'></div>
+                    <div className='results'></div>
                   </div>
                 </div>
               </div>
