@@ -61,7 +61,13 @@ const Details = () => {
                   <div className='column right aligned'>Aliases</div>
                   <div className='column'>
                     {artist.aliases?.map((alias) => {
-                      return <p key={alias.id}>{alias.name}</p>;
+                      return (
+                        <p key={alias.id}>
+                          <Link to={`/artists/${alias.id}/details`}>
+                            {alias.name}
+                          </Link>
+                        </p>
+                      );
                     })}
                   </div>
                 </div>
@@ -116,6 +122,10 @@ const Details = () => {
               ) : (
                 ''
               )}
+              <div className='row'>
+                <div className='column right aligned'>Liked From Friends</div>
+                <div className='column'>Test</div>
+              </div>
             </div>
           </div>
         </>
