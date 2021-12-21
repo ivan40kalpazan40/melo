@@ -29,3 +29,11 @@ export const editUser = (id, email, location, image) => {
 export const getUser = (id) => {
   return fetch(`/user/${id}`).then((res) => res.json());
 };
+
+export const getUserContacts = (id) => {
+  return fetch(`/user/${id}/contacts`).then((res) => res.json());
+};
+
+export const getAllUsers = () => {
+  return fetch(`/user`).then((res) => res.json());
+};

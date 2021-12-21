@@ -4,6 +4,7 @@ const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const randomArtistsListHandler = () => navigate('/artists');
+  const findFriendsHandler = () => navigate('/user');
   return (
     <div className='ui container'>
       <h1>Welcome to :melo:::</h1>
@@ -51,7 +52,9 @@ const Home = () => {
                   <i className='user plus icon'></i>
                   Add Friend
                 </div>
-                <div className='ui black button'>Find Friends</div>
+                <div className='ui black button' onClick={findFriendsHandler}>
+                  Find Friends
+                </div>
               </div>
             </div>
           </div>

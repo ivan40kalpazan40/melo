@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 
 import Home from './components/Home';
 import Artists from './components/Artists';
+import UserList from './components/UserList';
 import Details from './components/Details';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -25,6 +26,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/artists' element={<Artists />} />
           <Route path='/artists/:id/details' element={<Details />} />
+          <Route path='/user' element={<UserList />} />
           <Route path='/user/login' element={<Login />} />
           <Route path='/user/register' element={<Register />} />
           <Route path='/user/logout' element={<Logout />} />
