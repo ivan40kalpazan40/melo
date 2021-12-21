@@ -12,10 +12,14 @@ const Login = () => {
     authServices
       .login(username, password)
       .then((res) => {
+        if (res.ok === false) throw new Error(res.message);
         login(res);
         navigate('/');
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        e.target.reset();
+        console.log(err.message);
+      });
   };
   return (
     <div className='ui container'>

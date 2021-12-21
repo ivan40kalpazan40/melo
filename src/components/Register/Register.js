@@ -14,10 +14,14 @@ const Register = () => {
     authServices
       .register(username, password, confirmPassword)
       .then((response) => {
+        if (response.ok === false) throw new Error(response.message);
         login(response);
         navigate('/');
       })
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        e.target.reset();
+        console.log(err.message);
+      });
   };
   return (
     <div className='ui container'>

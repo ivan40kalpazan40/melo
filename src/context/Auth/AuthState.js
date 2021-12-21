@@ -10,8 +10,10 @@ export const AuthProvider = (props) => {
   const logout = () => {
     setUser(initialValue);
   };
+
+  const loadUser = (userData) => setUser(userData);
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, login, logout, loadUser }}>
       {props.children}
     </AuthContext.Provider>
   );

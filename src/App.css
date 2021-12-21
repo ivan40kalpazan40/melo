@@ -4,3 +4,15 @@
   justify-content: space-between;
   min-height: 100vh;
 }
+
+.profile-row {
+  background-color: rgb(187, 187, 187);
+  /* background-image: url('https://eskipaper.com/images/large-2.jpg'); */
+}
+
+.profile-image {
+  border: white solid 15px;
+}
+
+
+

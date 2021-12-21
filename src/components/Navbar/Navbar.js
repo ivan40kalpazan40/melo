@@ -27,7 +27,7 @@ const Navbar = () => {
         <Link to='/' className='item'>
           Home
         </Link>
-        <Link to='/user/profile' className='item'>
+        <Link to={`/user/${user?._id}/profile`} className='item'>
           Profile
         </Link>
       </div>

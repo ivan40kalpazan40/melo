@@ -17,3 +17,15 @@ export const register = (username, password, confirmPassword) => {
 export const logoutUser = () => {
   return fetch('/user/logout').then((res) => res.json());
 };
+
+export const editUser = (id, email, location, image) => {
+  return fetch(`/user/${id}/edit`, {
+    method: 'PATCH',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, location, image }),
+  }).then((res) => res.json());
+};
+
+export const getUser = (id) => {
+  return fetch(`/user/${id}`).then((res) => res.json());
+};

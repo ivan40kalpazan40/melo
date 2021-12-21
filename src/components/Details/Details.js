@@ -124,7 +124,7 @@ const Details = () => {
               )}
               <div className='row'>
                 <div className='column right aligned'>Liked From Friends</div>
-                <div className='column'>Test</div>
+                <div className='column'></div>
               </div>
             </div>
           </div>
