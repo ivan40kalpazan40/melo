@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 const UserList = () => {
   const [users, setUsers] = useState([]);
+  const { user } = useAuth();
   useEffect(() => {
     authServices.getAllUsers().then((res) => setUsers(res));
   }, []);
@@ -9,16 +11,18 @@ const UserList = () => {
     <div className='ui container'>
       <h1>User List</h1>
       {users.length > 0 ? (
-        <div class='ui middle aligned divided list'>
-          {users.map((user) => (
-            <div class='item' key={user._id}>
-              <div class='right floated content'>
-                <div class='ui button'>Add</div>
+        <div className='ui middle aligned divided list'>
+          {users
+            .filter((x) => x._id !== user._id)
+            .map((contact) => (
+              <div className='item' key={contact._id}>
+                <div className='right floated content'>
+                  <div className='ui button'>Add</div>
+                </div>
+                <img className='ui avatar image' src={contact.image} />
+                <div className='content'>{contact.username}</div>
               </div>
-              <img class='ui avatar image' src={user.image} />
-              <div class='content'>{user.username}</div>
-            </div>
-          ))}
+            ))}
         </div>
       ) : (
         'No users available'
