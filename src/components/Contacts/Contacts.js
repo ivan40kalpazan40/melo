@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 const Contacts = () => {
   const { user, logout } = useAuth();
+  const [contacts, setContacts] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     authServices
       .getUserContacts(user._id)
-      .then((res) => console.log(`Finally contacts: `, res))
+      .then((res) => setContacts(res.payload))
       .catch((err) => {
         console.log(err.message);
         logout();
@@ -36,74 +37,23 @@ const Contacts = () => {
         </Link>
       </div>
       <div className='ui list'>
-        <div className='item'>
-          <img className='ui avatar image' src={user.image} />
-          <div className='content'>
-            <a className='header'>Rachel</a>
-            <div className='description'>
-              Last seen watching{' '}
-              <a>
-                <b>Arrested Development</b>
-              </a>{' '}
-              just now.
-            </div>
-          </div>
-        </div>
-        <div className='item'>
-          <img className='ui avatar image' src={user.image} />
-          <div className='content'>
-            <a className='header'>Lindsay</a>
-            <div className='description'>
-              Last seen watching{' '}
-              <a>
-                <b>Bob's Burgers</b>
-              </a>{' '}
-              10 hours ago.
-            </div>
-          </div>
-        </div>
-        <div className='item'>
-          <img
-            className='ui avatar image'
-            src='/images/avatar2/small/matthew.png'
-          />
-          <div className='content'>
-            <a className='header'>Matthew</a>
-            <div className='description'>
-              Last seen watching{' '}
-              <a>
-                <b>The Godfather Part 2</b>
-              </a>{' '}
-              yesterday.
-            </div>
-          </div>
-        </div>
-        <div className='item'>
-          <img
-            className='ui avatar image'
-            src='/images/avatar/small/jenny.jpg'
-          />
-          <div className='content'>
-            <a className='header'>Jenny Hess</a>
-            <div className='description'>
-              Last seen watching{' '}
-              <a>
-                <b>Twin Peaks</b>
-              </a>{' '}
-              3 days ago.
-            </div>
-          </div>
-        </div>
-        <div className='item'>
-          <img
-            className='ui avatar image'
-            src='/images/avatar/small/veronika.jpg'
-          />
-          <div className='content'>
-            <a className='header'>Veronika Ossi</a>
-            <div className='description'>Has not watched anything recently</div>
-          </div>
-        </div>
+        {contacts.length > 0
+          ? contacts.map((contact) => (
+              <div className='item'>
+                <img className='ui avatar image' src={contact.image} />
+                <div className='content'>
+                  <a className='header'>{contact.username}</a>
+                  <div className='description'>
+                    Last added{' '}
+                    <a>
+                      <b>Arrested Development</b>
+                    </a>{' '}
+                    just now.
+                  </div>
+                </div>
+              </div>
+            ))
+          : 'No Contacts'}
       </div>
     </div>
   );
