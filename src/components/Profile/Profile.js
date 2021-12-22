@@ -53,7 +53,10 @@ const Profile = () => {
             <div className='column right aligned'>
               <i className='group icon'></i>
             </div>
-            <div className='column centered'>65 Friends</div>
+            <div className='column centered'>
+              {user.contacts.length}
+              {user.contacts.length === 1 ? ' Follow' : ' Follows'}
+            </div>
           </div>
           <div className='row'>
             <div className='column right aligned'>

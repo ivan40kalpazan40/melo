@@ -37,3 +37,9 @@ export const getUserContacts = (id) => {
 export const getAllUsers = () => {
   return fetch(`/user`).then((res) => res.json());
 };
+
+export const followToggle = (id, contactId) => {
+  return fetch(`/user/${id}/follow-user/${contactId}`).then((res) =>
+    res.json()
+  );
+};

@@ -1,9 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useAuth } from '../../context/Auth/AuthState';
+import Alert from '../Alert';
 import * as authServices from '../../services/authServices';
 
 const Register = () => {
   const { user, login } = useAuth();
+  const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
   const submitRegister = (e) => {
     e.preventDefault();
@@ -19,13 +22,18 @@ const Register = () => {
         navigate('/');
       })
       .catch((err) => {
+        setAlert({ status: 'Register Error', message: err.message });
         e.target.reset();
         console.log(err.message);
+        setTimeout(() => {
+          setAlert(null);
+        }, 4500);
       });
   };
   return (
     <div className='ui container'>
       <h1>Register</h1>
+      <Alert error={alert} />
       <form className='ui form' method='POST' onSubmit={submitRegister}>
         <div className='field'>
           <label htmlFor='username'>Username</label>

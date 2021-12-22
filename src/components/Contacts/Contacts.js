@@ -1,14 +1,19 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 const Contacts = () => {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     authServices
       .getUserContacts(user._id)
       .then((res) => console.log(`Finally contacts: `, res))
-      .catch((err) => console.log(err.message));
+      .catch((err) => {
+        console.log(err.message);
+        logout();
+        navigate('/user/login');
+      });
   }, []);
   return (
     <div className='ui  container'>
@@ -30,12 +35,12 @@ const Contacts = () => {
           Edit
         </Link>
       </div>
-      <div class='ui list'>
-        <div class='item'>
-          <img class='ui avatar image' src={user.image} />
-          <div class='content'>
-            <a class='header'>Rachel</a>
-            <div class='description'>
+      <div className='ui list'>
+        <div className='item'>
+          <img className='ui avatar image' src={user.image} />
+          <div className='content'>
+            <a className='header'>Rachel</a>
+            <div className='description'>
               Last seen watching{' '}
               <a>
                 <b>Arrested Development</b>
@@ -44,11 +49,11 @@ const Contacts = () => {
             </div>
           </div>
         </div>
-        <div class='item'>
-          <img class='ui avatar image' src={user.image} />
-          <div class='content'>
-            <a class='header'>Lindsay</a>
-            <div class='description'>
+        <div className='item'>
+          <img className='ui avatar image' src={user.image} />
+          <div className='content'>
+            <a className='header'>Lindsay</a>
+            <div className='description'>
               Last seen watching{' '}
               <a>
                 <b>Bob's Burgers</b>
@@ -57,14 +62,14 @@ const Contacts = () => {
             </div>
           </div>
         </div>
-        <div class='item'>
+        <div className='item'>
           <img
-            class='ui avatar image'
+            className='ui avatar image'
             src='/images/avatar2/small/matthew.png'
           />
-          <div class='content'>
-            <a class='header'>Matthew</a>
-            <div class='description'>
+          <div className='content'>
+            <a className='header'>Matthew</a>
+            <div className='description'>
               Last seen watching{' '}
               <a>
                 <b>The Godfather Part 2</b>
@@ -73,11 +78,14 @@ const Contacts = () => {
             </div>
           </div>
         </div>
-        <div class='item'>
-          <img class='ui avatar image' src='/images/avatar/small/jenny.jpg' />
-          <div class='content'>
-            <a class='header'>Jenny Hess</a>
-            <div class='description'>
+        <div className='item'>
+          <img
+            className='ui avatar image'
+            src='/images/avatar/small/jenny.jpg'
+          />
+          <div className='content'>
+            <a className='header'>Jenny Hess</a>
+            <div className='description'>
               Last seen watching{' '}
               <a>
                 <b>Twin Peaks</b>
@@ -86,14 +94,14 @@ const Contacts = () => {
             </div>
           </div>
         </div>
-        <div class='item'>
+        <div className='item'>
           <img
-            class='ui avatar image'
+            className='ui avatar image'
             src='/images/avatar/small/veronika.jpg'
           />
-          <div class='content'>
-            <a class='header'>Veronika Ossi</a>
-            <div class='description'>Has not watched anything recently</div>
+          <div className='content'>
+            <a className='header'>Veronika Ossi</a>
+            <div className='description'>Has not watched anything recently</div>
           </div>
         </div>
       </div>

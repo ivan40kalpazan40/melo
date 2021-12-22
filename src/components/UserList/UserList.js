@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
+import UserListItem from './UserListItem';
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const { user } = useAuth();
@@ -15,13 +16,7 @@ const UserList = () => {
           {users
             .filter((x) => x._id !== user._id)
             .map((contact) => (
-              <div className='item' key={contact._id}>
-                <div className='right floated content'>
-                  <div className='ui button'>Add</div>
-                </div>
-                <img className='ui avatar image' src={contact.image} />
-                <div className='content'>{contact.username}</div>
-              </div>
+              <UserListItem contact={contact} key={contact._id} />
             ))}
         </div>
       ) : (
