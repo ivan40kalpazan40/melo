@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
 import Contacts from './components/Contacts';
+import Followers from './components/Followers';
 import Collection from './components/Collection';
 import Edit from './components/Edit';
 import Login from './components/Login';
@@ -32,6 +33,7 @@ function App() {
           <Route path='/user/logout' element={<Logout />} />
           <Route path='/user/:userId/profile' element={<Profile />} />
           <Route path='/user/:userId/contacts' element={<Contacts />} />
+          <Route path='/user/:userId/followers' element={<Followers />} />
           <Route path='/user/:userId/collection' element={<Collection />} />
           <Route path='/user/:userId/edit' element={<Edit />} />
         </Routes>

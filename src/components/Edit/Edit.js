@@ -1,6 +1,7 @@
 import { useAuth } from '../../context/Auth/AuthState';
 import { useNavigate } from 'react-router-dom';
 import * as authServices from '../../services/authServices';
+import CompactMenu from '../CompactMenu/CompactMenu';
 const Edit = () => {
   const navigate = useNavigate();
   const { user } = useAuth();
@@ -25,26 +26,28 @@ const Edit = () => {
   };
   return (
     <div className='ui container'>
-      <h1>Edit</h1>
-      <h4>{username}</h4>
-      <form className='ui form' method='POST' onSubmit={submitEditProfile}>
-        <div className='field'>
-          <label>Email</label>
-          <input type='email' name='email' defaultValue={email} />
-        </div>
-        <div className='field'>
-          <label>Add Location</label>
-          <input type='text' name='location' defaultValue={location} />
-        </div>
-        <div className='field'>
-          <label>Profile Picture URL</label>
-          <input type='text' name='image' defaultValue={image} />
-        </div>
+      <h1>{username}'s Edit Page</h1>
+      <CompactMenu user={user} />
+      <div className='ui segment'>
+        <form className='ui form' method='POST' onSubmit={submitEditProfile}>
+          <div className='field'>
+            <label>Email</label>
+            <input type='email' name='email' defaultValue={email} />
+          </div>
+          <div className='field'>
+            <label>Add Location</label>
+            <input type='text' name='location' defaultValue={location} />
+          </div>
+          <div className='field'>
+            <label>Profile Picture URL</label>
+            <input type='text' name='image' defaultValue={image} />
+          </div>
 
-        <button className='ui button black' type='submit'>
-          Edit
-        </button>
-      </form>
+          <button className='ui button black' type='submit'>
+            Edit
+          </button>
+        </form>
+      </div>
     </div>
   );
 };
