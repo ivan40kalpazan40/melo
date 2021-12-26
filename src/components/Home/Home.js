@@ -1,10 +1,13 @@
 import { useAuth } from '../../context/Auth/AuthState';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 const Home = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
   const randomArtistsListHandler = () => navigate('/artists');
   const findFriendsHandler = () => navigate('/user');
+  const clickSearch = (e) => {
+    console.log(e.target);
+  };
   return (
     <div className='ui container'>
       <h1>Welcome to :melo:::</h1>
@@ -28,7 +31,7 @@ const Home = () => {
                 </div>
               </div>
               <div className='column'>
-                <div className='ui icon header'>
+                <div className='ui icon header form'>
                   <i className='search icon'></i>
                   Search Artist, Genre or Release
                 </div>
@@ -40,7 +43,10 @@ const Home = () => {
                         type='text'
                         placeholder='artist, genres, etc. ...'
                       />
-                      <i className='search icon'></i>
+
+                      <i className='search link icon ' onClick={clickSearch}>
+                        <Link to='#'></Link>
+                      </i>
                     </div>
                     <div className='results'></div>
                   </div>
@@ -54,6 +60,15 @@ const Home = () => {
                 </div>
                 <div className='ui black button' onClick={findFriendsHandler}>
                   Find Friends
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className='ui segment'>
+            <div className='ui grid'>
+              <div className='row center aligned'>
+                <div className='column'>
+                  <p>No results!</p>
                 </div>
               </div>
             </div>

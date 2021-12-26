@@ -25,7 +25,7 @@ const Contacts = () => {
         <div className='ui huge vertical list'>
           {contacts.length > 0
             ? contacts.map((contact) => (
-                <div className='item'>
+                <div className='item' key={contact._id}>
                   <img className='ui avatar image' src={contact.image} />
                   <div className='content'>
                     <a className='header'>{contact.username}</a>
