@@ -1,12 +1,31 @@
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/Auth/AuthState';
+import * as apiServices from '../../services/apiServices';
 import { useNavigate, Link } from 'react-router-dom';
 const Home = () => {
   const { user } = useAuth();
+  const [hasSearch, setHasSearch] = useState(false);
+  const [results, setResults] = useState({ pagination: {}, results: [] });
   const navigate = useNavigate();
+  let resType = '';
+  useEffect(() => {
+    setHasSearch(false);
+  }, []);
   const randomArtistsListHandler = () => navigate('/artists');
   const findFriendsHandler = () => navigate('/user');
   const clickSearch = (e) => {
-    console.log(e.target);
+    const searchValue = e.target.previousSibling.value;
+    apiServices
+      .getArtistInfo(searchValue)
+      .then((res) => {
+        setHasSearch(true);
+        setResults(res);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(`There is error`, err.message);
+      });
+    e.target.previousSibling.value = '';
   };
   return (
     <div className='ui container'>
@@ -68,7 +87,36 @@ const Home = () => {
             <div className='ui grid'>
               <div className='row center aligned'>
                 <div className='column'>
-                  <p>No results!</p>
+                  {hasSearch ? (
+                    <>
+                      {results.results
+                        .sort((a, b) => a.type.localeCompare(b.type))
+                        .map((result) => {
+                          let current = result.type;
+                          let displayType = '';
+
+                          console.log(`ResType: `, displayType);
+                          if (resType === '') {
+                            resType = current;
+                            displayType = resType;
+                          } else if (resType === current) {
+                            displayType = '';
+                          } else {
+                            resType = current;
+                            displayType = resType;
+                          }
+                          return (
+                            <>
+                              {displayType ? <h1>{displayType}</h1> : ''}
+
+                              <p>{result.title}</p>
+                            </>
+                          );
+                        })}
+                    </>
+                  ) : (
+                    <p>No results!</p>
+                  )}
                 </div>
               </div>
             </div>
