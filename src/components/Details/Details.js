@@ -1,12 +1,15 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { urlConfig } from '../../config/utils.config';
+import { useAuth } from '../../context/Auth/AuthState';
 import * as apiServices from '../../services/apiServices';
+import * as artistServices from '../../services/artistServices';
 const Details = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState({});
   const [current, setCurrent] = useState({});
+  const { user } = useAuth();
   useEffect(() => {
     setLoading(true);
     apiServices
@@ -24,6 +27,11 @@ const Details = () => {
         console.log(err.message);
       });
   }, [id]);
+
+  const addArtistHandler = (e) => {
+    artistServices.addArtist(artist.id, artist.name, user._id);
+  };
+
   return (
     <div className='ui container'>
       {loading ? (
@@ -126,6 +134,18 @@ const Details = () => {
                 <div className='column right aligned'>Liked From Friends</div>
                 <div className='column'></div>
               </div>
+              {Boolean(user) ? (
+                <div className='row'>
+                  <div className='column right aligned'></div>
+                  <div className='column'>
+                    <button className='ui button' onClick={addArtistHandler}>
+                      Add Artist
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </>

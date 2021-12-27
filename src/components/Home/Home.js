@@ -88,7 +88,7 @@ const Home = () => {
               {hasSearch ? (
                 <div className='row center aligned'>
                   <div className='column'>
-                    <div class='ui label orange'>
+                    <div class='ui label black'>
                       Results from search
                       <div class='detail'>{results.pagination.items}</div>
                     </div>
@@ -122,7 +122,15 @@ const Home = () => {
                             <>
                               {displayType ? <h1>{displayType}</h1> : ''}
 
-                              <p>{result.title}</p>
+                              <p key={result.id}>
+                                {current === 'artist' ? (
+                                  <Link to={`/artists/${result.id}/details`}>
+                                    {result.title}
+                                  </Link>
+                                ) : (
+                                  <Link to='#'>{result.title}</Link>
+                                )}
+                              </p>
                             </>
                           );
                         })}
