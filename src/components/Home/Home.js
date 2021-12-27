@@ -85,6 +85,19 @@ const Home = () => {
           </div>
           <div className='ui segment'>
             <div className='ui grid'>
+              {hasSearch ? (
+                <div className='row center aligned'>
+                  <div className='column'>
+                    <div class='ui label orange'>
+                      Results from search
+                      <div class='detail'>{results.pagination.items}</div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                ''
+              )}
+
               <div className='row center aligned'>
                 <div className='column'>
                   {hasSearch ? (
