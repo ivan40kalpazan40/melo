@@ -9,6 +9,7 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState({});
   const [current, setCurrent] = useState({});
+  const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
   const { user } = useAuth();
   useEffect(() => {
@@ -30,6 +31,7 @@ const Details = () => {
                 } else {
                   setLiked(false);
                 }
+                setLikes(artistResponse.artist.users.length);
               } else {
                 setLiked(false);
               }
@@ -50,6 +52,7 @@ const Details = () => {
       .then((res) => {
         if (res.ok) {
           setLiked(true);
+          setLikes(likes + 1);
         }
       })
       .catch((err) => console.log(err.message));
@@ -62,7 +65,15 @@ const Details = () => {
       ) : (
         <>
           <h2>{artist.name}</h2>
-          <h4>Real Name</h4>
+          {Boolean(user) ? (
+            <h4>
+              {likes}
+              {likes === 1 ? ' like' : ' likes'}{' '}
+            </h4>
+          ) : (
+            <h4>Real Name</h4>
+          )}
+
           <div className='ui segment'>
             <div className='ui two column grid'>
               <div className='row'>
@@ -153,10 +164,6 @@ const Details = () => {
               ) : (
                 ''
               )}
-              <div className='row'>
-                <div className='column right aligned'>Liked From Friends</div>
-                <div className='column'></div>
-              </div>
               {Boolean(user) ? (
                 <div className='row'>
                   <div className='column right aligned'></div>

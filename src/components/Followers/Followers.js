@@ -25,13 +25,6 @@ const Followers = () => {
                   <img className='ui avatar image' src={follower.image} />
                   <div className='content'>
                     <a className='header'>{follower.username}</a>
-                    <div className='description'>
-                      Last added{' '}
-                      <a>
-                        <b>Arrested Development</b>
-                      </a>{' '}
-                      just now.
-                    </div>
                   </div>
                 </div>
               ))
