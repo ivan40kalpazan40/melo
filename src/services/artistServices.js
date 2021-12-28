@@ -5,3 +5,7 @@ export const addArtist = (artistId, artistName, userId) => {
     body: JSON.stringify({ artistId, artistName, userId }),
   }).then((res) => res.json());
 };
+
+export const getArtist = (discogsId) => {
+  return fetch(`/artist/discogs/${discogsId}`).then((res) => res.json());
+};

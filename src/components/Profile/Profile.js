@@ -36,6 +36,17 @@ const Profile = () => {
           </div>
           <div className='row'>
             <div className='column right aligned'>
+              <i className='music icon'></i>
+            </div>
+            <div className='column centered'>
+              {user.artists.length}{' '}
+              {user.artists.length === 1
+                ? 'Favorite Artist'
+                : 'Favorite Artists'}
+            </div>
+          </div>
+          <div className='row'>
+            <div className='column right aligned'>
               <i className='group icon'></i>
             </div>
             <div className='column centered'>
