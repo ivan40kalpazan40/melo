@@ -21,14 +21,21 @@ const Details = () => {
         apiServices.getArtistInfo(res.name).then((response) => {
           console.log('Artist info: ', response.results[0]);
           setCurrent(response.results[0]);
-          artistServices.getArtist(res.id).then((artistResponse) => {
-            console.log(`ARTIST RESPONSE: `, artistResponse);
-            if (artistResponse.ok) {
-              if (artistResponse.artist.users.includes(user._id)) {
-                setLiked(true);
+          if (Boolean(user)) {
+            artistServices.getArtist(res.id).then((artistResponse) => {
+              console.log(`ARTIST RESPONSE: `, artistResponse);
+              if (artistResponse.ok) {
+                if (artistResponse.artist.users.includes(user._id)) {
+                  setLiked(true);
+                } else {
+                  setLiked(false);
+                }
+              } else {
+                setLiked(false);
               }
-            }
-          });
+            });
+          }
+
           setLoading(false);
         });
       })

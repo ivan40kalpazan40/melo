@@ -9,3 +9,7 @@ export const addArtist = (artistId, artistName, userId) => {
 export const getArtist = (discogsId) => {
   return fetch(`/artist/discogs/${discogsId}`).then((res) => res.json());
 };
+
+export const getUserArtists = (userId) => {
+  return fetch(`/user/${userId}/artists`).then((res) => res.json());
+};
