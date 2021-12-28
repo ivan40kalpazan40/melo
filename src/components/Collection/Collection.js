@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as artistServices from '../../services/artistServices';
 import CompactMenu from '../CompactMenu';
@@ -24,7 +25,12 @@ const Collection = () => {
                     src='https://media.istockphoto.com/vectors/music-band-on-stage-vector-id665565652'
                   />
                   <div className='content'>
-                    <a className='header'>{artist.artistName}</a>
+                    <Link
+                      to={`/artists/${artist.discogsId}/details`}
+                      className='header'
+                    >
+                      {artist.artistName}
+                    </Link>
                   </div>
                 </div>
               ))

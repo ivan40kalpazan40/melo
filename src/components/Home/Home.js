@@ -157,25 +157,11 @@ const Home = () => {
                   <i className='music icon'></i>
                   See Random Artists
                 </div>
-                <div className='ui primary button'>Go To List</div>
-              </div>
-              <div className='column'>
-                <div className='ui icon header'>
-                  <i className='search icon'></i>
-                  Search Artist, Genre or Release
-                </div>
-                <div className='field'>
-                  <div className='ui search'>
-                    <div className='ui icon input'>
-                      <input
-                        className='prompt'
-                        type='text'
-                        placeholder='artist, genres, etc. ...'
-                      />
-                      <i className='search icon'></i>
-                    </div>
-                    <div className='results'></div>
-                  </div>
+                <div
+                  className='ui primary button'
+                  onClick={randomArtistsListHandler}
+                >
+                  Go To List
                 </div>
               </div>
             </div>
