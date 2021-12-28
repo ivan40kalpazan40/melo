@@ -9,6 +9,7 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const [artist, setArtist] = useState({});
   const [current, setCurrent] = useState({});
+  const [liked, setLiked] = useState(false);
   const { user } = useAuth();
   useEffect(() => {
     setLoading(true);
@@ -17,9 +18,9 @@ const Details = () => {
       .then((res) => {
         console.log('Artist from API', res);
         setArtist(res);
-        apiServices.getArtistInfo(res.name).then((res) => {
-          console.log('Artist info: ', res.results[0]);
-          setCurrent(res.results[0]);
+        apiServices.getArtistInfo(res.name).then((response) => {
+          console.log('Artist info: ', response.results[0]);
+          setCurrent(response.results[0]);
           setLoading(false);
         });
       })
@@ -29,7 +30,14 @@ const Details = () => {
   }, [id]);
 
   const addArtistHandler = (e) => {
-    artistServices.addArtist(artist.id, artist.name, user._id);
+    artistServices
+      .addArtist(artist.id, artist.name, user._id)
+      .then((res) => {
+        if (res.ok) {
+          setLiked(true);
+        }
+      })
+      .catch((err) => console.log(err.message));
   };
 
   return (
@@ -138,9 +146,13 @@ const Details = () => {
                 <div className='row'>
                   <div className='column right aligned'></div>
                   <div className='column'>
-                    <button className='ui button' onClick={addArtistHandler}>
-                      Add Artist
-                    </button>
+                    {liked ? (
+                      <button className='ui button'>Liked</button>
+                    ) : (
+                      <button className='ui button' onClick={addArtistHandler}>
+                        Add Artist
+                      </button>
+                    )}
                   </div>
                 </div>
               ) : (

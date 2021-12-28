@@ -122,13 +122,18 @@ const Home = () => {
                             <>
                               {displayType ? <h1>{displayType}</h1> : ''}
 
-                              <p key={result.id}>
+                              <p>
                                 {current === 'artist' ? (
-                                  <Link to={`/artists/${result.id}/details`}>
+                                  <Link
+                                    to={`/artists/${result.id}/details`}
+                                    key={result.id}
+                                  >
                                     {result.title}
                                   </Link>
                                 ) : (
-                                  <Link to='#'>{result.title}</Link>
+                                  <Link to='#' key={result.id}>
+                                    {result.title}
+                                  </Link>
                                 )}
                               </p>
                             </>
