@@ -67,7 +67,7 @@ const Details = () => {
           <h2>{artist.name}</h2>
           {Boolean(user) ? (
             <h4>
-              {likes}
+              <span className='ui black circular label'>{likes}</span>
               {likes === 1 ? ' like' : ' likes'}{' '}
             </h4>
           ) : (

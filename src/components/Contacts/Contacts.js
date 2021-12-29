@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CompactMenu from '../CompactMenu';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
@@ -25,7 +26,12 @@ const Contacts = () => {
                 <div className='item' key={contact._id}>
                   <img className='ui avatar image' src={contact.image} />
                   <div className='content'>
-                    <a className='header'>{contact.username}</a>
+                    <Link
+                      to={`/user/${user._id}/contacts/${contact._id}`}
+                      className='header'
+                    >
+                      {contact.username}
+                    </Link>
                   </div>
                 </div>
               ))

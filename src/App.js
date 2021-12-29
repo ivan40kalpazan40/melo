@@ -17,6 +17,7 @@ import Register from './components/Register';
 
 import { DataProvider } from './context/Data/DataState';
 import './App.css';
+import ContactProfile from './components/ContactProfile/ContactProfile';
 
 function App() {
   return (
@@ -33,6 +34,10 @@ function App() {
           <Route path='/user/logout' element={<Logout />} />
           <Route path='/user/:userId/profile' element={<Profile />} />
           <Route path='/user/:userId/contacts' element={<Contacts />} />
+          <Route
+            path='/user/:userId/contacts/:contactId'
+            element={<ContactProfile />}
+          />
           <Route path='/user/:userId/followers' element={<Followers />} />
           <Route path='/user/:userId/collection' element={<Collection />} />
           <Route path='/user/:userId/edit' element={<Edit />} />

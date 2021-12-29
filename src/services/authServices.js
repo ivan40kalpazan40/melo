@@ -34,6 +34,10 @@ export const getUserContacts = (id) => {
   return fetch(`/user/${id}/contacts`).then((res) => res.json());
 };
 
+export const getMyContact = (uid, contactId) => {
+  return fetch(`/user/${uid}/contacts/${contactId}`).then((res) => res.json());
+};
+
 export const getUserFollowers = (id) => {
   return fetch(`/user/${id}/followers`).then((res) => res.json());
 };

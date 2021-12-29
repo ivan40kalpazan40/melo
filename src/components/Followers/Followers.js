@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import CompactMenu from '../CompactMenu';
 import { useAuth } from '../../context/Auth/AuthState';
 
@@ -24,7 +25,13 @@ const Followers = () => {
                 <div className='item'>
                   <img className='ui avatar image' src={follower.image} />
                   <div className='content'>
-                    <a className='header'>{follower.username}</a>
+                    <Link
+                      to={`/user/${user._id}/contacts/${follower._id}`}
+                      className='header'
+                      key={follower._id}
+                    >
+                      {follower.username}
+                    </Link>
                   </div>
                 </div>
               ))
