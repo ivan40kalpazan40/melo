@@ -7,7 +7,9 @@ const UserListItem = ({ contact }) => {
   const [isFriend, setIsFriend] = useState(false);
   useEffect(() => {
     console.log('a friend?  ', isFriend);
-    if (user.contacts.includes(contact._id)) {
+    console.log(`USER:`, user);
+    console.log(`CONTACT:`, contact);
+    if (user.contacts.some((x) => x._id == contact._id)) {
       setIsFriend(true);
     } else {
       setIsFriend(false);

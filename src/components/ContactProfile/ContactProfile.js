@@ -22,6 +22,15 @@ const ContactProfile = () => {
       <div className='ui segment'>
         <h2>{contact.username}</h2>
         <div className='ui two column grid'>
+          <div className='row profile-row'>
+            <div className='column centered'>
+              <img
+                className='ui medium centered circular image profile-image'
+                src={contact.image}
+                alt=''
+              />
+            </div>
+          </div>
           <div className='row'>
             <div className='column right aligned'>
               {' '}
@@ -51,12 +60,19 @@ const ContactProfile = () => {
             </div>
           </div>
           <div className='row'>
-            <div className='column right aligned'>username</div>
-            <div className='column'>{contact.username}</div>
+            <div className='column right aligned'>
+              <i className='point icon'></i>
+            </div>
+            <div className='column'>
+              {contact.location || 'location not added'}
+            </div>
           </div>
           <div className='row'>
-            <div className='column right aligned'>username</div>
-            <div className='column'>{contact.username}</div>
+            <div className='column right aligned'>
+              {' '}
+              <i className='mail icon'></i>
+            </div>
+            <div className='column'>{contact.email || 'email not added'}</div>
           </div>
         </div>
       </div>
