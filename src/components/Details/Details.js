@@ -20,11 +20,9 @@ const Details = () => {
         console.log('Artist from API', res);
         setArtist(res);
         apiServices.getArtistInfo(res.name).then((response) => {
-          console.log('Artist info: ', response.results[0]);
           setCurrent(response.results[0]);
           if (Boolean(user)) {
             artistServices.getArtist(res.id).then((artistResponse) => {
-              console.log(`ARTIST RESPONSE: `, artistResponse);
               if (artistResponse.ok) {
                 if (artistResponse.artist.users.includes(user._id)) {
                   setLiked(true);
@@ -34,6 +32,7 @@ const Details = () => {
                 setLikes(artistResponse.artist.users.length);
               } else {
                 setLiked(false);
+                setLikes(0);
               }
             });
           }

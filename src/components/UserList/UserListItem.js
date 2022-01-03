@@ -27,16 +27,6 @@ const UserListItem = ({ contact }) => {
       .catch((error) => {
         console.log(error.message);
       });
-    // if (!isFriend) {
-    //   authServices.followUser(user._id, currentContactId).then((res) => {
-    //     if (res.ok) {
-    //       setIsFriend(true);
-    //     }
-    //   });
-    // } else {
-    //   console.log('Unfollow');
-    //   authServices
-    // }
   };
   return (
     <div className='item'>
