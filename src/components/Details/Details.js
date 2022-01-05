@@ -36,7 +36,6 @@ const Details = () => {
               }
             });
           }
-
           setLoading(false);
         });
       })
@@ -65,10 +64,9 @@ const Details = () => {
         <>
           <h2>{artist.name}</h2>
           {Boolean(user) ? (
-            <h4>
-              <span className='ui black circular label'>{likes}</span>
-              {likes === 1 ? ' like' : ' likes'}{' '}
-            </h4>
+            <div class='ui label'>
+              <i class='heart icon red'></i> {likes}
+            </div>
           ) : (
             <h4>Real Name</h4>
           )}

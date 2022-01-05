@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { isAuth } from '../../hoc/isAuth';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as authServices from '../../services/authServices';
 import CompactMenu from '../CompactMenu/CompactMenu';
@@ -81,4 +81,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default isAuth(Profile);
