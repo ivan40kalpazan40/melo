@@ -1,15 +1,20 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/Auth/AuthState';
 import * as apiServices from '../../services/apiServices';
+import * as artistServices from '../../services/artistServices';
 import { useNavigate, Link } from 'react-router-dom';
 const Home = () => {
   const { user } = useAuth();
   const [hasSearch, setHasSearch] = useState(false);
+  const [artists, setArtists] = useState([]);
   const [results, setResults] = useState({ pagination: {}, results: [] });
   const navigate = useNavigate();
   let resType = '';
   useEffect(() => {
     setHasSearch(false);
+    if (!Boolean(user)) {
+      artistServices.getAllArtists().then((res) => setArtists(res.artists));
+    }
   }, []);
   const randomArtistsListHandler = () => navigate('/artists');
   const findFriendsHandler = () => navigate('/user');
@@ -88,9 +93,9 @@ const Home = () => {
               {hasSearch ? (
                 <div className='row center aligned'>
                   <div className='column'>
-                    <div class='ui label black'>
+                    <div className='ui label black'>
                       Results from search
-                      <div class='detail'>{results.pagination.items}</div>
+                      <div className='detail'>{results.pagination.items}</div>
                     </div>
                   </div>
                 </div>
@@ -149,24 +154,46 @@ const Home = () => {
           </div>
         </div>
       ) : (
-        <div className='ui placeholder segment'>
-          <div className='ui two column stackable center aligned grid'>
-            <div className='middle aligned row'>
-              <div className='column'>
-                <div className='ui icon header'>
-                  <i className='music icon'></i>
-                  See Random Artists
-                </div>
-                <div
-                  className='ui primary button'
-                  onClick={randomArtistsListHandler}
-                >
-                  Go To List
+        <>
+          <div className='ui placeholder segment'>
+            <div className='ui two column stackable center aligned grid'>
+              <div className='middle aligned row'>
+                <div className='column'>
+                  <div className='ui icon header'>
+                    <i className='music icon'></i>
+                    See Random Artists
+                  </div>
+                  <div
+                    className='ui primary button'
+                    onClick={randomArtistsListHandler}
+                  >
+                    Go To List
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          <div className='ui segment'>
+            <h1>Top Artists</h1>
+            <div className='ui three column grid'>
+              {artists
+                .slice(-6)
+                .sort((a, b) => b.users.length - a.users.length)
+                .map((artist) => (
+                  <div className='column'>
+                    <div className='ui fluid card'>
+                      <div className='image'>
+                        <img className='ui thumb' src={artist.artistImage} />
+                      </div>
+                      <div className='content'>
+                        <a className='header'>{artist.artistName}</a>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+            </div>
+          </div>
+        </>
       )}
 
       {/*  */}

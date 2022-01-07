@@ -46,7 +46,7 @@ const Details = () => {
 
   const addArtistHandler = (e) => {
     artistServices
-      .addArtist(artist.id, artist.name, user._id)
+      .addArtist(artist.id, artist.name, user._id, current.cover_image)
       .then((res) => {
         if (res.ok) {
           setLiked(true);
@@ -64,8 +64,8 @@ const Details = () => {
         <>
           <h2>{artist.name}</h2>
           {Boolean(user) ? (
-            <div class='ui label'>
-              <i class='heart icon red'></i> {likes}
+            <div className='ui label'>
+              <i className='heart icon red'></i> {likes}
             </div>
           ) : (
             <h4>Real Name</h4>
