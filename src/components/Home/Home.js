@@ -177,13 +177,13 @@ const Home = () => {
             <h1>Top Artists</h1>
             <div className='ui three column grid'>
               {artists
-                .slice(-6)
                 .sort((a, b) => b.users.length - a.users.length)
+                .slice(0, 6)
                 .map((artist) => (
                   <div className='column'>
                     <div className='ui fluid card'>
                       <div className='image'>
-                        <img className='ui thumb' src={artist.artistImage} />
+                        <img className='thumb' src={artist.artistImage} />
                       </div>
                       <div className='content'>
                         <a className='header'>{artist.artistName}</a>
