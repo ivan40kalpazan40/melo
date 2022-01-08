@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import * as authServices from '../../services/authServices';
+import ArtistLink from './ArtistLink';
 const ContactProfile = () => {
   const [contact, setContact] = useState({});
   const { userId, contactId } = useParams();
@@ -51,11 +52,7 @@ const ContactProfile = () => {
                   : 'favourite artists'}
               </p>
               {contact.artists?.map((artist) => (
-                <p>
-                  <Link to={`/artists/${artist.discogsId}/details`}>
-                    {artist.artistName}
-                  </Link>
-                </p>
+                <ArtistLink artist={artist} key={artist.discogsId} />
               ))}
             </div>
           </div>

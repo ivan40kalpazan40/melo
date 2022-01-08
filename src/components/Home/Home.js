@@ -3,6 +3,7 @@ import { useAuth } from '../../context/Auth/AuthState';
 import * as apiServices from '../../services/apiServices';
 import * as artistServices from '../../services/artistServices';
 import { useNavigate, Link } from 'react-router-dom';
+import ArtistPreview from './ArtistPreview';
 const Home = () => {
   const { user } = useAuth();
   const [hasSearch, setHasSearch] = useState(false);
@@ -180,16 +181,7 @@ const Home = () => {
                 .sort((a, b) => b.users.length - a.users.length)
                 .slice(0, 6)
                 .map((artist) => (
-                  <div className='column'>
-                    <div className='ui fluid card'>
-                      <div className='image'>
-                        <img className='thumb' src={artist.artistImage} />
-                      </div>
-                      <div className='content'>
-                        <a className='header'>{artist.artistName}</a>
-                      </div>
-                    </div>
-                  </div>
+                  <ArtistPreview artist={artist} key={artist._id} />
                 ))}
             </div>
           </div>

@@ -4,6 +4,7 @@ import CompactMenu from '../CompactMenu';
 import { useAuth } from '../../context/Auth/AuthState';
 
 import * as authServices from '../../services/authServices';
+import FollowerItem from './FollowerItem';
 
 const Followers = () => {
   const { user } = useAuth();
@@ -22,18 +23,11 @@ const Followers = () => {
         <div className='ui huge vertical list'>
           {followers.length > 0
             ? followers.map((follower) => (
-                <div className='item'>
-                  <img className='ui avatar image' src={follower.image} />
-                  <div className='content'>
-                    <Link
-                      to={`/user/${user._id}/contacts/${follower._id}`}
-                      className='header'
-                      key={follower._id}
-                    >
-                      {follower.username}
-                    </Link>
-                  </div>
-                </div>
+                <FollowerItem
+                  key={follower._id}
+                  user={user}
+                  follower={follower}
+                />
               ))
             : 'No Followers'}
         </div>
