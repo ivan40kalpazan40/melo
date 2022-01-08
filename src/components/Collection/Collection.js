@@ -20,10 +20,7 @@ const Collection = () => {
           {myArtists.length > 0
             ? myArtists.map((artist) => (
                 <div className='item' key={artist._id}>
-                  <img
-                    className='ui avatar image'
-                    src='https://media.istockphoto.com/vectors/music-band-on-stage-vector-id665565652'
-                  />
+                  <img className='ui avatar image' src={artist.artistImage} />
                   <div className='content'>
                     <Link
                       to={`/artists/${artist.discogsId}/details`}
